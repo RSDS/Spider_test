@@ -14,12 +14,7 @@ import java.util.regex.Pattern;
 public class SpiderMain {
 
 	public static void main(String[] args) {
-		
-		Pattern questionUrlShortFormat = Pattern.compile("[0-9]{4}");
-		Matcher UrlMatcher = questionUrlShortFormat.matcher("5555");
-		Pattern zhihuUrlFormat = Pattern.compile("question_link.+?href=\"(.+?)\"");
-		Matcher x1 = zhihuUrlFormat.matcher("question_link\" href=\"/question/51783509/answer/128688529\" data-id=\"12931354\"");
-		
+
 		// 定义即将访问的链接
 		String url = "https://www.zhihu.com/explore/recommendations";
 		String urlResult = SendGet(url);
@@ -31,11 +26,13 @@ public class SpiderMain {
 		System.out.println(result);
 
 		// 知乎
-		getZhihu(urlResult);
+		Zhihu.getZhihu(urlResult);
 
 		System.out.println(LocalDateTime.now());
 	}
 
+	
+	
 	// SendGet请求
 	public static String SendGet(String url) {
 		// 定义一个字符串用来存储网页内容
@@ -75,43 +72,9 @@ public class SpiderMain {
 
 	}
 
-	// getZhihuAnwser
-	public static Map<String, String> getZhihuAnwser(Zhihu zhihuParameter) {
-		Map<String, String> resultMap = new HashMap();
-		String htmlStr = SendGet(zhihuParameter.zhihuUrl);
-		System.out.println(htmlStr + "\n");
 
-		return resultMap;
-	}
 
-	// 知乎问题链接统一
-	public static String uniUrl(String url) {
-		Pattern questionUrlShortFormat = Pattern.compile("[0-9]{4}");
-		Matcher UrlMatcher = questionUrlShortFormat.matcher("5555");
-		return UrlMatcher.group(1);
-	}
 
-	// getZhihu
-	public static List<Zhihu> getZhihu(String parameter) {
-		Pattern questionFormat = Pattern.compile("question_link.+?>(.+?)<");
-		Pattern zhihuUrlFormat = Pattern.compile("question_link.+?href=\"(.+?)\"");
 
-		List<Zhihu> resultList = new ArrayList<Zhihu>();
-		Matcher questionMatcher = questionFormat.matcher(parameter);
-		Matcher zhihuUrlMatcher = zhihuUrlFormat.matcher(parameter);
-		while (questionMatcher.find() && zhihuUrlMatcher.find()) {
-			Zhihu zhihuTemp = new Zhihu();
-			zhihuTemp.question = questionMatcher.group(1);
-			zhihuTemp.zhihuUrl = "https://www.zhihu.com/question/" + uniUrl(zhihuUrlMatcher.group(1));
-			getZhihuAnwser(zhihuTemp);
-			resultList.add(zhihuTemp);
-		}
-		for (Zhihu i : resultList) {
-			System.out.println("问题：" + i.question);
-			System.out.println("链接：" + i.zhihuUrl + "\n");
-		}
-
-		return resultList;
-	}
 
 }
