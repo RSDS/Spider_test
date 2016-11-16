@@ -77,18 +77,24 @@ public class SpiderMain {
 
 		return resultMap;
 	}
+	
+	//知乎问题链接统一
 
 	// getZhihu
 	public static List<Zhihu> getZhihu(String parameter) {
 		Pattern questionFormat = Pattern.compile("question_link.+?>(.+?)<");
 		Pattern zhihuUrlFormat = Pattern.compile("question_link.+?href=\"(.+?)\"");
+		Pattern questionUrlShortFormat = Pattern.compile("question/([0-9]+?)");
 		List<Zhihu> resultList = new ArrayList<Zhihu>();
 		Matcher questionMatcher = questionFormat.matcher(parameter);
 		Matcher zhihuUrlMatcher = zhihuUrlFormat.matcher(parameter);
 		while (questionMatcher.find() && zhihuUrlMatcher.find()) {
+			String ss = zhihuUrlMatcher.group(1);
+			Matcher qUrlMatcher = questionUrlShortFormat.matcher(ss);
 			Zhihu zhihuTemp = new Zhihu();
 			zhihuTemp.question = questionMatcher.group(1);
-			zhihuTemp.zhihuUrl = "https://www.zhihu.com" + zhihuUrlMatcher.group(1);
+			String ss2 = qUrlMatcher.group(1);
+			zhihuTemp.zhihuUrl = "https://www.zhihu.com/question/" + ss2;
 			getZhihuAnwser(zhihuTemp);
 			resultList.add(zhihuTemp);
 		}
