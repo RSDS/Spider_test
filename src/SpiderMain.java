@@ -16,7 +16,8 @@ public class SpiderMain {
 	public static void main(String[] args) {
 		
 		Pattern questionUrlShortFormat = Pattern.compile("[0-9]{4}");
-		Matcher UrlMatcher = questionUrlShortFormat.matcher("5555");
+		Matcher UrlMatcher = questionUrlShortFormat.matcher("5555555");
+		UrlMatcher.find();
 		Pattern zhihuUrlFormat = Pattern.compile("question_link.+?href=\"(.+?)\"");
 		Matcher x1 = zhihuUrlFormat.matcher("question_link\" href=\"/question/51783509/answer/128688529\" data-id=\"12931354\"");
 		
@@ -86,9 +87,13 @@ public class SpiderMain {
 
 	// 知乎问题链接统一
 	public static String uniUrl(String url) {
-		Pattern questionUrlShortFormat = Pattern.compile("[0-9]{4}");
-		Matcher UrlMatcher = questionUrlShortFormat.matcher("5555");
-		return UrlMatcher.group(1);
+		Pattern questionUrlShortFormat = Pattern.compile("question/([0-9]*)");
+		Matcher UrlMatcher = questionUrlShortFormat.matcher(url);
+		if(UrlMatcher.find()){
+			return UrlMatcher.group(1);
+		}
+		return "";
+		
 	}
 
 	// getZhihu

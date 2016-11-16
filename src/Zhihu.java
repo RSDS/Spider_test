@@ -19,8 +19,6 @@ public class Zhihu {
 	
 	
 	
-	
-	
 	public String getQuestion(){
 		return this.question;
 	}
