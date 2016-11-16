@@ -93,8 +93,8 @@ public class SpiderMain {
 			Matcher qUrlMatcher = questionUrlShortFormat.matcher(ss);
 			Zhihu zhihuTemp = new Zhihu();
 			zhihuTemp.question = questionMatcher.group(1);
-			String ss2 = qUrlMatcher.group(1);
-			zhihuTemp.zhihuUrl = "https://www.zhihu.com/question/" + ss2;
+			String ss222222 = qUrlMatcher.group(1);
+			zhihuTemp.zhihuUrl = "https://www.zhihu.com/question/" + ss222222;
 			getZhihuAnwser(zhihuTemp);
 			resultList.add(zhihuTemp);
 		}
