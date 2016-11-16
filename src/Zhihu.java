@@ -30,7 +30,7 @@ public class Zhihu {
 	}
 	
 	public String anwserToString(){
-		Map<String, String> temMap2 = this.anwserMap;
+		Map<String, String> temMap22 = this.anwserMap;
 		String result = "";
 		
 		
