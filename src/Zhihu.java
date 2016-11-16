@@ -66,8 +66,6 @@ public class Zhihu {
 		this.anwserMap = new HashMap<String, String>();
 	}
 	
-	
-	
 	public String getQuestion(){
 		return this.question;
 	}
