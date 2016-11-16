@@ -1,9 +1,9 @@
 
-import java.io.*;
-import java.net.*;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +14,12 @@ import java.util.regex.Pattern;
 public class SpiderMain {
 
 	public static void main(String[] args) {
+		
+		Pattern questionUrlShortFormat = Pattern.compile("[0-9]{4}");
+		Matcher UrlMatcher = questionUrlShortFormat.matcher("5555");
+		Pattern zhihuUrlFormat = Pattern.compile("question_link.+?href=\"(.+?)\"");
+		Matcher x1 = zhihuUrlFormat.matcher("question_link\" href=\"/question/51783509/answer/128688529\" data-id=\"12931354\"");
+		
 		// 定义即将访问的链接
 		String url = "https://www.zhihu.com/explore/recommendations";
 		String urlResult = SendGet(url);
@@ -30,7 +36,7 @@ public class SpiderMain {
 		System.out.println(LocalDateTime.now());
 	}
 
-	// SendGet
+	// SendGet请求
 	public static String SendGet(String url) {
 		// 定义一个字符串用来存储网页内容
 		String result = "";
@@ -77,24 +83,26 @@ public class SpiderMain {
 
 		return resultMap;
 	}
-	
-	//知乎问题链接统一
+
+	// 知乎问题链接统一
+	public static String uniUrl(String url) {
+		Pattern questionUrlShortFormat = Pattern.compile("[0-9]{4}");
+		Matcher UrlMatcher = questionUrlShortFormat.matcher("5555");
+		return UrlMatcher.group(1);
+	}
 
 	// getZhihu
 	public static List<Zhihu> getZhihu(String parameter) {
 		Pattern questionFormat = Pattern.compile("question_link.+?>(.+?)<");
 		Pattern zhihuUrlFormat = Pattern.compile("question_link.+?href=\"(.+?)\"");
-		Pattern questionUrlShortFormat = Pattern.compile("question/([0-9]+?)");
+
 		List<Zhihu> resultList = new ArrayList<Zhihu>();
 		Matcher questionMatcher = questionFormat.matcher(parameter);
 		Matcher zhihuUrlMatcher = zhihuUrlFormat.matcher(parameter);
 		while (questionMatcher.find() && zhihuUrlMatcher.find()) {
-			String ss = zhihuUrlMatcher.group(1);
-			Matcher qUrlMatcher = questionUrlShortFormat.matcher(ss);
 			Zhihu zhihuTemp = new Zhihu();
 			zhihuTemp.question = questionMatcher.group(1);
-			String ss222222 = qUrlMatcher.group(1);
-			zhihuTemp.zhihuUrl = "https://www.zhihu.com/question/" + ss222222;
+			zhihuTemp.zhihuUrl = "https://www.zhihu.com/question/" + uniUrl(zhihuUrlMatcher.group(1));
 			getZhihuAnwser(zhihuTemp);
 			resultList.add(zhihuTemp);
 		}
