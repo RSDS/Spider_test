@@ -1,13 +1,13 @@
 
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Zhihu {
 	// 问题格式
@@ -103,13 +103,6 @@ public class Zhihu {
 		return this.zhihuUrl;
 	}
 	
-	public String answerToString(){
-		Map<String, String> temMap = this.answerMap;
-		String result = "";
-		
-		
-		return result;
-	}
 	
 	
 	@Override

@@ -1,4 +1,3 @@
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 //自动化生成SQL
