@@ -14,11 +14,7 @@ public class RegexMatch {
 		Matcher matcher = p.matcher(parameter);
 		String result = "";
 		while (matcher.find()) {
-			// int temp = matcher.groupCount();
-			// for(int i=0;i<= temp;++i){
-			// System.out.println(matcher.group());
 			result += ("\n" + matcher.group(1));
-			// }
 		}
 		return result;
 	}
