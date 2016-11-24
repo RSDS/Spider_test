@@ -11,7 +11,7 @@ public class autoSql {
 		
 		//疾病表
 		String tableName = "CT_KNOWLEDGE_DISEASE";
-		Integer columnNumber = 25;
+		Integer columnNumber = 177;
 		for(int i=1; i<=columnNumber; ++i){
 			String diseaseId = i+"";
 			String diseaseName = "病"+i;
@@ -36,10 +36,13 @@ public class autoSql {
 		
 		//科室疾病表
 		String tableName3 = "CT_KNOWLEDGE_DEPT_DISEASE_REL";
-		for(int i=1,j=1; i<=columnNumber; ++i,++j){
+		for(int i=1,j=1; i<=columnNumber; ++i){
 			String deptId = j+"";
 			String diseaseId = i+"";
 			result+=("INSERT INTO "+tableName3+" () value ("+deptId+", "+diseaseId+");\n");
+			if(j<36){
+				++j;
+			}
 		}
 		
 		
