@@ -4,6 +4,25 @@ import java.time.LocalDateTime;
 //自动化生成SQL
 public class autoSql {
 	
+	public static String createFakeEvaluate(){
+		String result = "";
+		LocalDateTime now = LocalDateTime.now();
+		
+		//疾病表
+		String tableName = "CT_PATIENT_IN_HOSPITAL_APPRAISE";
+		Integer columnNumber = 700;
+		for(int i=551; i<=columnNumber; ++i){
+			String PATIENT_IN_HOSPITAL_APPRAISE_Id = i+"";
+			String PATIENT_IN_HOSPITAL_KEY_ID = "1020";
+			String APPRAISE_VALUE ="1";
+			String APPRAISE_NAME ="一";
+			result+=("INSERT INTO "+tableName+"() value ("+PATIENT_IN_HOSPITAL_APPRAISE_Id+", \""+PATIENT_IN_HOSPITAL_KEY_ID+"\", \""+APPRAISE_VALUE+"\", \""+APPRAISE_NAME+"\", \""+now+"\", 1);\n" );
+		}
+		
+		
+		return result;
+	}
+	
 	
 	public static String createFakeData(){
 		String result = "";

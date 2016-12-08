@@ -49,11 +49,11 @@ public class DouBanBookTask extends Thread{
                         String title = titleElement.text();
                         Elements pointElement = dl_x.select("span.rating_nums");
                         String pointString = pointElement.text();
-                        if(StringUtils.isNotBlank(pointString)){
-                            Double point = Double.valueOf(pointString);
-                            System.out.println(title+"\t"+point);
-                            if(point > 9) writeToFile("E:/doubanbook",title,point);
-                        }
+//                        if(StringUtils.isNotBlank(pointString)){
+//                            Double point = Double.valueOf(pointString);
+//                            System.out.println(title+"\t"+point);
+//                            if(point > 9) writeToFile("E:/doubanbook",title,point);
+//                        }
                     } catch (Exception e) {
                         continue;
                     }

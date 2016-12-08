@@ -7,9 +7,9 @@ public class SpiderMain {
 	public static void main(String[] args) {
 			
 		//造假数据
-		System.out.println(autoSql.createFakeData());
-		String filePath = "D:\\迭代工作\\2016-11-14--知识库_疾病信息_旧版\\HCRMYF-4022-4030-4031.sql";
-		String content = autoSql.createFakeData();
+		System.out.println(autoSql.createFakeEvaluate());
+		String filePath = "D:\\迭代工作\\2016-11-28--发送短信后端+随访覆盖率+抽查统计\\HCRMYF-4232.sql";
+		String content = autoSql.createFakeEvaluate();
 		SpiderIO.createNewFile(filePath, content, true);
 		
 //		String filePath = "D:\\工作_学习\\爬虫\\知乎编辑推荐问题与回答.txt";
