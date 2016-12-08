@@ -44,6 +44,7 @@ public class DouBanBookTask extends Thread{
                 Iterator<Element> dlIter = dl.iterator();
                 while(dlIter.hasNext()){
                     try {
+                    	
                         Element dl_x = dlIter.next();
                         Elements titleElement = dl_x.select("a.title");
                         String title = titleElement.text();
