@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="poi-ooxml-3.16-beta1.jar"/>
 	<classpathentry kind="lib" path="poi-ooxml-schemas-3.16-beta1.jar"/>
 	<classpathentry kind="lib" path="poi-scratchpad-3.16-beta1.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
